@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.bg{
+			background-image: url(bg.jpg);
+			background-size: 100%;
+		}
+		.cone{
+			height: 200px;
+			width: 150px;
+			background-size: 100%;
+			position: absolute;
+			left: 700px;
+			top: 100px;
+
+		}
+		.ctwo{
+			height: 200px;
+			width: 150px;
+			background-size: 100%;
+			position: absolute;
+			left: 700px;
+			top: 500px;
+		}
+		.button{
+			position: absolute;
+			left: 740px;
+			top: 350px;
+		}
+
+	</style>
+</head>
+<body class="bg">
+	<img src="cone.png" class="cone">
+	<h3 style="position: absolute; left: 700px; top: 50px;">hp <span class="hp1" > </span></h3>
+
+	<h3 style="position: absolute; left: 700px; top: 70px;">урон <span class="damage1"> </span></h3>
+
+	<img src="ctwo.webp" class="ctwo">
+	<h3 style="position: absolute; left: 700px; top: 430px;">hp <span class="hp2"> </span></h3>
+
+	<h3 style="position: absolute; left: 700px; top: 450px;">урон <span class="damage2"> </span></h3>
+
+	<button class="button">attack</button>
+</body>
+
+<script type="text/javascript">
+	let cone = document.querySelector('.cone');
+	let ctwo = document.querySelector('.ctwo');
+	
+	let hp1 = document.querySelector('.hp1');
+	let hp2 = document.querySelector('.hp2');
+
+	let dmg1 = document.querySelector('.damage1');
+	let dmg2 = document.querySelector('.damage2');
+
+	let btn = document.querySelector('.button');
+
+	let randomizer = function(arg){
+		let random = Math.round(Math.random()*arg);
+		return random;
+	}
+
+	user1 = {
+		hp: randomizer(100),
+		dmg: randomizer(20),
+	}
+
+	user2 = {
+		hp: randomizer(100),
+		dmg: randomizer(20),
+	}
+
+	hp1.innerHTML = user1.hp;
+	hp2.innerHTML = user2.hp;
+
+	dmg1.innerHTML = user1.dmg;
+	dmg2.innerHTML = user2.dmg;
+
+	btn.onclick = function(){
+		user1.hp = user1.hp - user2.dmg;
+		hp1.innerHTML = user1.hp;
+
+		user2.hp = user2.hp - user1.dmg;
+		hp2.innerHTML = user2.hp;
+
+		if(user2.hp<0){
+			ctwo.style.display = 'none';
+			alert('победил первый игрок!')
+		}
+		if(user1.hp<0){
+			cone.style.display = 'none';
+			alert('победил второй игрок!')
+		}
+	}
+
+</script>
+</html>
